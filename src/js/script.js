@@ -1,22 +1,23 @@
 
 // CREATE EVENT LISTENERS
+// Function to create and display chips
 function createChips(numbers, container) {
-    container.innerHTML = ''; // Clear previous results
+    container.innerHTML = '';  // Clear the previous results
     numbers.forEach((num, index) => {
         const chip = document.createElement('div');
         chip.classList.add('chip');
         chip.textContent = num;
 
-        // Add a delay to make the chips appear in sequence with animation
+        // Add a delay to animate the chips one by one
         setTimeout(() => {
             chip.classList.add('show');
-        }, index * 100); // Adjust timing for each chip
+        }, index * 100);  // Adjust timing for each chip
 
         container.appendChild(chip);
     });
 }
 
-// Count Up: 1 → 15
+// Pre-Built Loop 1: Count Up 1 → 15 (Step +1)
 function countUp1To15() {
     const container = document.querySelector('.result-row.hint');
     const numbers = [];
@@ -26,7 +27,7 @@ function countUp1To15() {
     createChips(numbers, container);
 }
 
-// Count Down: 15 → 1
+// Pre-Built Loop 2: Count Down 15 → 1 (Step -1)
 function countDown15To1() {
     const container = document.querySelector('.result-row.hint');
     const numbers = [];
@@ -36,8 +37,8 @@ function countDown15To1() {
     createChips(numbers, container);
 }
 
-// Count Up: 1 → 30 (odd only)
-function countUpOdd() {
+// Pre-Built Loop 3: Odd Numbers 1 → 30
+function oddNumbersUpTo30() {
     const container = document.querySelector('.result-row.hint');
     const numbers = [];
     for (let i = 1; i <= 30; i++) {
@@ -48,7 +49,7 @@ function countUpOdd() {
     createChips(numbers, container);
 }
 
-// Multiples of 5: 30 → 0
+// Pre-Built Loop 4: Multiples of 5 (30 → 0)
 function multiplesOf5() {
     const container = document.querySelector('.result-row.hint');
     const numbers = [];
@@ -58,7 +59,7 @@ function multiplesOf5() {
     createChips(numbers, container);
 }
 
-// Full Range: -50 → 50 (step 5)
+// Pre-Built Loop 5: Full Range -50 → 50 (Step +5)
 function fullRangeMinus50To50() {
     const container = document.querySelector('.result-row.hint');
     const numbers = [];
@@ -68,7 +69,7 @@ function fullRangeMinus50To50() {
     createChips(numbers, container);
 }
 
-// Multiples of 2: -50 → 50 (step 2)
+// Pre-Built Loop 6: Multiples of 2 (-50 → 50)
 function multiplesOf2() {
     const container = document.querySelector('.result-row.hint');
     const numbers = [];
@@ -105,13 +106,13 @@ function customLoop() {
     createChips(numbers, container);
 }
 
-// Event Listeners for the predefined loop buttons
+// Event Listeners for the predefined loop buttons (Run)
 document.querySelectorAll('.btn-primary').forEach((btn, index) => {
     btn.addEventListener('click', () => {
         switch (index) {
             case 0: countUp1To15(); break;
             case 1: countDown15To1(); break;
-            case 2: countUpOdd(); break;
+            case 2: oddNumbersUpTo30(); break;
             case 3: multiplesOf5(); break;
             case 4: fullRangeMinus50To50(); break;
             case 5: multiplesOf2(); break;
@@ -130,9 +131,10 @@ document.querySelectorAll('.btn-outline-secondary').forEach((btn, index) => {
     });
 });
 
-// Reset the playground
+// Reset the Playground
 document.getElementById('pg-reset').addEventListener('click', () => {
     document.getElementById('pg-row').innerHTML = ''; // Clear the Playground results
 });
+
 
 // CREATE FUNCTIONS W/ LOOPS
