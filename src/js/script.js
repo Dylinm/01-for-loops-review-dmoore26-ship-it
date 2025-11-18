@@ -10,4 +10,12 @@ const cardConfigs = [
   { start: -50, end: 50, step: 2 }
 ];
 
+function shouldDisplay(num, filter) {
+  if (filter === 'odd') return num % 2 !== 0;
+  if (filter === 'even') return num % 2 === 0;
+  if (filter === 'mul5') return num % 5 === 0;
+  return true;
+}
+
+
 // CREATE FUNCTIONS W/ LOOPS
