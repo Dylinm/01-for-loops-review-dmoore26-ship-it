@@ -55,4 +55,48 @@ cards.forEach((card, index) => {
   });
 });
 
+
+const pgRun = document.querySelector('#pg-run');
+const pgReset = document.querySelector('#pg-reset');
+const pgRow = document.querySelector('#pg-row');
+const pgStart = document.querySelector('#pg-start');
+const pgEnd = document.querySelector('#pg-end');
+const pgStep = document.querySelector('#pg-step');
+const pgFilter = document.querySelector('#pg-filter');
+
+pgRun.addEventListener('click', function() {
+  pgRow.classList.remove('hint');
+  pgRow.innerHTML = '';
+
+  const start = parseInt(pgStart.value);
+  const end = parseInt(pgEnd.value);
+  const step = parseInt(pgStep.value);
+  const filter = pgFilter.value;
+
+  if (step > 0) {
+    for (let i = start; i <= end; i += step) {
+      if (shouldDisplay(i, filter)) {
+        const chip = document.createElement('span');
+        chip.className = 'chip show';
+        chip.textContent = i;
+        pgRow.appendChild(chip);
+      }
+    }
+  } else if (step < 0) {
+    for (let i = start; i >= end; i += step) {
+      if (shouldDisplay(i, filter)) {
+        const chip = document.createElement('span');
+        chip.className = 'chip show';
+        chip.textContent = i;
+        pgRow.appendChild(chip);
+      }
+    }
+  }
+});
+
+pgReset.addEventListener('click', function() {
+  pgRow.innerHTML = '';
+  pgRow.classList.add('hint');
+});
+
 // CREATE FUNCTIONS W/ LOOPS
