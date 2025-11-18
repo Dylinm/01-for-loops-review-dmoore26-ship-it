@@ -17,5 +17,42 @@ function shouldDisplay(num, filter) {
   return true;
 }
 
+const cards = document.querySelectorAll('#cards .card');
+cards.forEach((card, index) => {
+  const config = cardConfigs[index];
+  const resultRow = card.querySelector('.result-row');
+  const runBtn = card.querySelector('.btn-primary');
+  const resetBtn = card.querySelector('.btn-outline-secondary');
+
+  runBtn.addEventListener('click', function() {
+    resultRow.classList.remove('hint');
+    resultRow.innerHTML = '';
+
+    if (config.step > 0) {
+      for (let i = config.start; i <= config.end; i += config.step) {
+        if (shouldDisplay(i, config.filter)) {
+          const chip = document.createElement('span');
+          chip.className = 'chip show';
+          chip.textContent = i;
+          resultRow.appendChild(chip);
+        }
+      }
+    } else {
+      for (let i = config.start; i >= config.end; i += config.step) {
+        if (shouldDisplay(i, config.filter)) {
+          const chip = document.createElement('span');
+          chip.className = 'chip show';
+          chip.textContent = i;
+          resultRow.appendChild(chip);
+        }
+      }
+    }
+  });
+
+  resetBtn.addEventListener('click', function() {
+    resultRow.innerHTML = '';
+    resultRow.classList.add('hint');
+  });
+});
 
 // CREATE FUNCTIONS W/ LOOPS
